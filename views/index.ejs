@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todoey</title>
+    <script src="https://kit.fontawesome.com/4637d6af85.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="./styles/styles.css">
+</head>
+<body>
+
+    <%- include("./partials/navBar.ejs") %>
+    
+    <main>
+        <div class="container">
+            <h2 class="title"> <%= title %> </h2>
+            <div class="tasksCount">
+                <h3 class="tasksCountText">You have <span> <%= items.length %> </span> tasks today! </h3>
+            </div>
+            <form action=<%= actionPath %> method="POST">
+                <input class="itemInput" type="text" name="newItem" placeholder="New Item">
+                <input class="submit" type="submit" value="+">
+            </form>
+            <div class="box">
+                <% if (locals.items) { %>
+                    <% for(var i=0; i<items.length; i++) { %>
+                        <div class="itemContainer">
+                            <div class="item">
+                                <input class="done" name="done" type="checkbox" required>
+                                <label for="done"> <%= items[i] %> </label>
+                            </div>
+                        </div>
+                    <% } %>
+                <% } %>
+            </div>
+            <div class="closeBox"></div>
+        </div>
+    </main>
+
+    <%- include("./partials/footer.ejs") %>
+
+</body>
+</html>
